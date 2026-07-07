@@ -1,0 +1,68 @@
+@font-face {
+    font-family: 'MaruBuri';
+    src: url('fonts/MaruBuri-Regular.ttf') format('truetype');
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+   background: #fff;
+    font-family:'MaruBuri';
+
+}
+
+/* 뒤로가기 */
+
+.back{
+
+    position:fixed;
+
+    top:35px;
+    left:55px;
+
+    color:#0b2fa8;
+
+    text-decoration:none;
+
+    font-size:18px;
+
+}
+
+/* 사진 가운데 */
+
+.photo{
+
+    width:100vw;
+    height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.photo img{
+
+    width:560px;
+
+    transform:rotate(-2deg);
+
+    transition:.4s;
+
+    box-shadow:0 15px 45px rgba(0,0,0,.12);
+
+}
+
+.photo img:hover{
+
+    transform:rotate(0deg) scale(1.02);
+
+}
+
