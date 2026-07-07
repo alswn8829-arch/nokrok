@@ -19,11 +19,15 @@ const itemName = itemNames[itemId] || "unknown item";
 
 const itemLabel = document.getElementById("itemLabel");
 const writeForm = document.getElementById("writeForm");
+const submitButton = writeForm.querySelector("button[type='submit']");
 
 itemLabel.textContent = itemName;
 
 writeForm.addEventListener("submit", async (event) => {
   event.preventDefault();
+
+  submitButton.disabled = true;
+  submitButton.textContent = "sending...";
 
   const name = document.getElementById("name").value.trim();
   const password = document.getElementById("password").value.trim();
@@ -32,11 +36,15 @@ writeForm.addEventListener("submit", async (event) => {
 
   if (!itemId) {
     alert("아이템 정보가 없습니다.");
+    submitButton.disabled = false;
+    submitButton.textContent = "send";
     return;
   }
 
   if (!name || !password || !title || !message) {
     alert("모든 칸을 입력해 주세요.");
+    submitButton.disabled = false;
+    submitButton.textContent = "send";
     return;
   }
 
@@ -62,5 +70,7 @@ writeForm.addEventListener("submit", async (event) => {
   } catch (error) {
     console.error(error);
     alert("저장 중 오류가 발생했습니다.");
+    submitButton.disabled = false;
+    submitButton.textContent = "send";
   }
 });
