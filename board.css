@@ -280,9 +280,6 @@ nav a {
   margin-top: 12px;
   font-size: 13px;
 }
-.item{
-  position:relative;
-}
 
 .item.has-post::before{
   content:"";
