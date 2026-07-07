@@ -11,12 +11,17 @@ const passwordMessage = document.getElementById("passwordMessage");
 let selectedItemId = null;
 
 async function checkExistingPosts() {
+
   for (const item of items) {
-    const itemText = item.querySelector("p").textContent;
-    const itemId = itemText.split(" ")[0];
+
+    const itemId = item.querySelector("p").textContent.split(" ")[0];
 
     try {
-      const response = await fetch(`${API_URL}?action=check&itemId=${encodeURIComponent(itemId)}`);
+
+      const response = await fetch(
+        `${API_URL}?action=check&itemId=${encodeURIComponent(itemId)}`
+      );
+
       const result = await response.json();
 
       if (result.exists) {
@@ -24,75 +29,108 @@ async function checkExistingPosts() {
       } else {
         item.classList.remove("has-post");
       }
-    } catch (error) {
-      console.error(error);
+
+    } catch (e) {
+      console.error(e);
     }
+
   }
+
 }
 
-items.forEach((item) => {
+items.forEach(item => {
+
   item.addEventListener("click", async () => {
-    const itemName = item.querySelector("p").textContent;
-    selectedItemId = itemName.split(" ")[0];
+
+    selectedItemId = item.querySelector("p").textContent.split(" ")[0];
 
     try {
-      const response = await fetch(`${API_URL}?action=check&itemId=${encodeURIComponent(selectedItemId)}`);
+
+      const response = await fetch(
+        `${API_URL}?action=check&itemId=${encodeURIComponent(selectedItemId)}`
+      );
+
       const result = await response.json();
 
       if (!result.exists) {
+
         window.location.href = `write.html?id=${selectedItemId}`;
         return;
+
       }
 
-      modalItemName.textContent = itemName;
+      modalItemName.textContent = item.querySelector("p").textContent;
       passwordInput.value = "";
       passwordMessage.textContent = "";
+
       modal.classList.add("show");
       passwordInput.focus();
 
-    } catch (error) {
-      console.error(error);
-      alert("게시글 확인 중 오류가 발생했습니다.");
+    } catch (e) {
+
+      console.error(e);
+      alert("게시글 확인 실패");
+
     }
+
   });
+
 });
 
-closeModal.addEventListener("click", () => {
+closeModal.onclick = () => {
+
   modal.classList.remove("show");
+
+};
+
+enterPassword.onclick = openPost;
+
+passwordInput.addEventListener("keydown", e => {
+
+  if (e.key === "Enter") {
+
+    openPost();
+
+  }
+
 });
 
-enterPassword.addEventListener("click", checkPassword);
+async function openPost() {
 
-passwordInput.addEventListener("keydown", (event) => {
-  if (event.key === "Enter") checkPassword();
-});
-
-async function checkPassword() {
   const password = passwordInput.value.trim();
 
   if (!password) {
+
     passwordMessage.textContent = "enter password";
     return;
+
   }
 
   try {
+
     const response = await fetch(
       `${API_URL}?action=read&itemId=${encodeURIComponent(selectedItemId)}&password=${encodeURIComponent(password)}`
     );
 
     const result = await response.json();
 
-    if (result.ok) {
-      sessionStorage.setItem("postPassword", password);
-      window.location.href = `post.html?id=${selectedItemId}`;
-    } else {
+    if (!result.ok) {
+
       passwordMessage.textContent = "wrong password";
+      return;
+
     }
 
-  } catch (error) {
-    console.error(error);
+    window.location.href =
+      `post.html?id=${selectedItemId}&password=${encodeURIComponent(password)}`;
+
+  } catch (e) {
+
+    console.error(e);
     passwordMessage.textContent = "error";
+
   }
+
 }
 
 checkExistingPosts();
