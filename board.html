@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Lost & Found</title>
+
+  <link rel="stylesheet" href="board.css">
+</head>
+
+<body>
+
+<header class="board-header">
+  <a href="index.html" class="logo">nokrok*</a>
+
+  <nav>
+    <a href="about.html">about</a>
+    <a href="book.html">books</a>
+    <a href="music.html">music</a>
+    <a href="work.html">work</a>
+    <a href="diary.html">diary</a>
+    <a href="board.html">board</a>
+  </nav>
+</header>
+
+<main class="lost-page">
+
+  <section class="title-box">
+    <p class="title">
+      Lost<br>
+      and<br>
+      Found
+    </p>
+
+    <p class="subtitle">
+      분실물을 클릭하여 서류를 작성하세요.
+    </p>
+  </section>
+
+  <section class="items-area">
+
+    <div class="item item-01">
+      <img src="images/item-portrait.png" alt="portrait">
+      <p>001 portrait</p>
+    </div>
+
+    <div class="item item-02">
+      <img src="images/item-camera.png" alt="camera">
+      <p>002 camera</p>
+    </div>
+
+    <div class="item item-03">
+      <img src="images/item-postcard.png" alt="postcard">
+      <p>003 postcard</p>
+    </div>
+
+    <div class="item item-04">
+      <img src="images/item-spider.png" alt="spider">
+      <p>004 spider</p>
+    </div>
+
+    <div class="item item-05">
+      <img src="images/item-pineapple.png" alt="pineapple">
+      <p>005 pineapple</p>
+    </div>
+
+    <div class="item item-06">
+      <img src="images/item-beer.png" alt="beer girl">
+      <p>006 beer girl</p>
+    </div>
+
+    <div class="item item-07">
+      <img src="images/item-shoes.png" alt="red shoes">
+      <p>007 red shoes</p>
+    </div>
+
+    <div class="item item-08">
+      <img src="images/item-ferret.png" alt="white ferret">
+      <p>008 white ferret</p>
+    </div>
+
+    <div class="item item-09">
+      <img src="images/item-rock.png" alt="rock">
+      <p>009 rock</p>
+    </div>
+
+    <div class="item item-10">
+      <img src="images/item-mp3.png" alt="mp3">
+      <p>010 mp3</p>
+    </div>
+
+  </section>
+
+</main>
+
+<div class="password-modal" id="passwordModal">
+  <div class="password-box">
+    <button class="close-btn" id="closeModal">×</button>
+
+    <p class="modal-item-name" id="modalItemName">001 portrait</p>
+
+    <input type="password" id="passwordInput" placeholder="password">
+
+    <button id="enterPassword">enter</button>
+
+    <p class="password-message" id="passwordMessage"></p>
+  </div>
+</div>
+
+<script src="board.js"></script>
+
+</body>
+</html>
