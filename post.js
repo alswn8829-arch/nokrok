@@ -16,7 +16,7 @@ const itemNames = {
 const params = new URLSearchParams(location.search);
 
 const id = params.get("id");
-const password = sessionStorage.getItem("postPassword");
+const password = params.get("password");
 
 document.getElementById("itemTitle").textContent =
   itemNames[id] || "unknown item";
