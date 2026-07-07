@@ -14,251 +14,254 @@
 }
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
 body{
-    background:#fff;
-    color:#111;
-    font-family:Arial,sans-serif;
+  background:#fff;
+  color:#111;
+  font-family:Arial,sans-serif;
 }
 
 a{
-    text-decoration:none;
-    color:inherit;
+  text-decoration:none;
+  color:inherit;
 }
 
 /* ---------------- HEADER ---------------- */
 
 .board-header{
-    width:100%;
-    padding:42px 54px 20px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+  width:100%;
+  padding:42px 54px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
 .logo{
-    font-family:"Header_2";
-    font-size:28px;
+  font-family:"Header_2";
+  font-size:28px;
 }
 
 nav{
-    display:flex;
-    gap:54px;
+  display:flex;
+  gap:54px;
 }
 
 nav a{
-    font-family:"Header_2";
-    font-size:15px;
+  font-family:"Header_2";
+  font-size:15px;
 }
 
 /* ---------------- PAGE ---------------- */
 
 .lost-page{
-    width:100%;
-    min-height:100vh;
-    padding-bottom:120px;
+  width:100%;
+  min-height:100vh;
+  padding-bottom:120px;
 }
 
 .title-box{
-    text-align:center;
-    margin:20px 0 40px;
+  text-align:center;
+  margin:20px 0 40px;
 }
 
 .title{
-    font-family:"Header_2";
-    font-size:68px;
-    line-height:.85;
+  font-family:"Header_2";
+  font-size:68px;
+  line-height:.85;
 }
 
 .subtitle{
-    margin-top:35px;
-    font-family:"MaruBuri";
-    font-size:14px;
-    color:#999;
+  margin-top:35px;
+  font-family:"MaruBuri";
+  font-size:14px;
+  color:#999;
 }
 
 /* ---------------- ITEMS ---------------- */
 
 .items-area{
-    position:relative;
-    width:100%;
-    max-width:1280px;
-    height:1250px;
-    margin:auto;
+  position:relative;
+  width:100%;
+  max-width:1280px;
+  height:1250px;
+  margin:0 auto;
 }
 
 .item{
-    position:absolute;
-    cursor:pointer;
+  position:absolute;
+  cursor:pointer;
 }
 
 .item img{
-    width:100%;
-    display:block;
+  width:100%;
+  display:block;
+  position:relative;
+  z-index:1;
 }
 
 .item p{
-    margin-top:8px;
-    font-family:"ItemName";
-    font-size:18px;
-    text-align:center;
+  margin-top:8px;
+  font-family:"ItemName";
+  font-size:18px;
+  text-align:center;
+  position:relative;
+  z-index:2;
 }
 
 /* 위치 */
 
 .item-01{
-    width:180px;
-    left:110px;
-    top:20px;
-    transform:rotate(-2deg);
+  width:180px;
+  left:110px;
+  top:20px;
+  transform:rotate(-2deg);
 }
 
 .item-02{
-    width:230px;
-    left:470px;
-    top:110px;
-    transform:rotate(5deg);
+  width:230px;
+  left:470px;
+  top:110px;
+  transform:rotate(5deg);
 }
 
 .item-03{
-    width:250px;
-    right:90px;
-    top:90px;
-    transform:rotate(-4deg);
+  width:250px;
+  right:90px;
+  top:90px;
+  transform:rotate(-4deg);
 }
 
 .item-04{
-    width:220px;
-    left:90px;
-    top:390px;
-    transform:rotate(7deg);
+  width:220px;
+  left:90px;
+  top:390px;
+  transform:rotate(7deg);
 }
 
 .item-05{
-    width:170px;
-    right:200px;
-    top:420px;
-    transform:rotate(1deg);
+  width:170px;
+  right:200px;
+  top:420px;
+  transform:rotate(1deg);
 }
 
 .item-06{
-    width:170px;
-    left:520px;
-    top:550px;
-    transform:rotate(-1deg);
+  width:170px;
+  left:520px;
+  top:550px;
+  transform:rotate(-1deg);
 }
 
 .item-07{
-    width:220px;
-    right:60px;
-    top:850px;
-    transform:rotate(5deg);
+  width:220px;
+  right:60px;
+  top:850px;
+  transform:rotate(5deg);
 }
 
 .item-08{
-    width:115px;
-    left:170px;
-    top:780px;
-    transform:rotate(-3deg);
+  width:115px;
+  left:170px;
+  top:780px;
+  transform:rotate(-3deg);
 }
 
 .item-09{
-    width:190px;
-    left:510px;
-    top:890px;
-    transform:rotate(1deg);
+  width:190px;
+  left:510px;
+  top:890px;
+  transform:rotate(1deg);
 }
 
 .item-10{
-    width:150px;
-    left:200px;
-    top:1100px;
-    transform:rotate(-2deg);
+  width:150px;
+  left:200px;
+  top:1100px;
+  transform:rotate(-2deg);
 }
 
 /* ---------------- TAPE ---------------- */
 
+.item.has-post{
+  z-index:50;
+}
+
 .item.has-post::before{
-    content:"";
-    position:absolute;
-
-    width:92px;
-    height:40px;
-
-    top:-16px;
-    left:50%;
-
-    transform:translateX(-50%) rotate(-6deg);
-
-    background:url("images/tape01.png") center/contain no-repeat;
-
-    z-index:20;
-    pointer-events:none;
+  content:"";
+  position:absolute;
+  width:130px;
+  height:65px;
+  top:-34px;
+  left:50%;
+  transform:translateX(-50%) rotate(-6deg);
+  background:url("images/tape01.png") center/contain no-repeat;
+  z-index:999;
+  pointer-events:none;
 }
 
 /* ---------------- PASSWORD MODAL ---------------- */
 
 .password-modal{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(255,255,255,.72);
-    z-index:999;
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(255,255,255,.72);
+  z-index:9999;
 }
 
 .password-modal.show{
-    display:flex;
-    justify-content:center;
-    align-items:center;
+  display:flex;
+  justify-content:center;
+  align-items:center;
 }
 
 .password-box{
-    width:280px;
-    padding:28px 24px;
-    background:#fff;
-    border:1px solid #111;
-    text-align:center;
-    position:relative;
+  width:280px;
+  padding:28px 24px;
+  background:#fff;
+  border:1px solid #111;
+  text-align:center;
+  position:relative;
 }
 
 .close-btn{
-    position:absolute;
-    top:8px;
-    right:10px;
-    border:0;
-    background:none;
-    font-size:22px;
-    cursor:pointer;
+  position:absolute;
+  top:8px;
+  right:10px;
+  border:0;
+  background:none;
+  font-size:22px;
+  cursor:pointer;
 }
 
 .modal-item-name{
-    font-family:"ItemName";
-    font-size:22px;
-    margin-bottom:18px;
+  font-family:"ItemName";
+  font-size:22px;
+  margin-bottom:18px;
 }
 
 #passwordInput{
-    width:100%;
-    border:0;
-    border-bottom:1px solid #111;
-    padding:8px 4px;
-    text-align:center;
-    outline:none;
+  width:100%;
+  border:0;
+  border-bottom:1px solid #111;
+  padding:8px 4px;
+  text-align:center;
+  outline:none;
 }
 
 #enterPassword{
-    margin-top:18px;
-    padding:7px 20px;
-    border:1px solid #111;
-    background:#fff;
-    cursor:pointer;
+  margin-top:18px;
+  padding:7px 20px;
+  border:1px solid #111;
+  background:#fff;
+  cursor:pointer;
 }
 
 .password-message{
-    margin-top:12px;
-    font-size:13px;
+  margin-top:12px;
+  font-size:13px;
 }
