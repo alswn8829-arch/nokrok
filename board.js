@@ -61,14 +61,10 @@ closeModal.addEventListener("click", () => {
   modal.classList.remove("show");
 });
 
-enterPassword.addEventListener("click", () => {
-  checkPassword();
-});
+enterPassword.addEventListener("click", checkPassword);
 
 passwordInput.addEventListener("keydown", (event) => {
-  if (event.key === "Enter") {
-    checkPassword();
-  }
+  if (event.key === "Enter") checkPassword();
 });
 
 async function checkPassword() {
