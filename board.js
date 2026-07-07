@@ -11,13 +11,10 @@ const passwordMessage = document.getElementById("passwordMessage");
 let selectedItemId = null;
 
 async function checkExistingPosts() {
-
   for (const item of items) {
-
     const itemId = item.querySelector("p").textContent.split(" ")[0];
 
     try {
-
       const response = await fetch(
         `${API_URL}?action=check&itemId=${encodeURIComponent(itemId)}`
       );
@@ -29,23 +26,17 @@ async function checkExistingPosts() {
       } else {
         item.classList.remove("has-post");
       }
-
-    } catch (e) {
-      console.error(e);
+    } catch (error) {
+      console.error(error);
     }
-
   }
-
 }
 
-items.forEach(item => {
-
+items.forEach((item) => {
   item.addEventListener("click", async () => {
-
     selectedItemId = item.querySelector("p").textContent.split(" ")[0];
 
     try {
-
       const response = await fetch(
         `${API_URL}?action=check&itemId=${encodeURIComponent(selectedItemId)}`
       );
@@ -53,10 +44,8 @@ items.forEach(item => {
       const result = await response.json();
 
       if (!result.exists) {
-
         window.location.href = `write.html?id=${selectedItemId}`;
         return;
-
       }
 
       modalItemName.textContent = item.querySelector("p").textContent;
@@ -65,49 +54,34 @@ items.forEach(item => {
 
       modal.classList.add("show");
       passwordInput.focus();
-
-    } catch (e) {
-
-      console.error(e);
+    } catch (error) {
+      console.error(error);
       alert("게시글 확인 실패");
-
     }
-
   });
-
 });
 
 closeModal.onclick = () => {
-
   modal.classList.remove("show");
-
 };
 
 enterPassword.onclick = openPost;
 
-passwordInput.addEventListener("keydown", e => {
-
-  if (e.key === "Enter") {
-
+passwordInput.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
     openPost();
-
   }
-
 });
 
 async function openPost() {
-
   const password = passwordInput.value.trim();
 
   if (!password) {
-
     passwordMessage.textContent = "enter password";
     return;
-
   }
 
   try {
-
     const response = await fetch(
       `${API_URL}?action=read&itemId=${encodeURIComponent(selectedItemId)}&password=${encodeURIComponent(password)}`
     );
@@ -115,22 +89,16 @@ async function openPost() {
     const result = await response.json();
 
     if (!result.ok) {
-
       passwordMessage.textContent = "wrong password";
       return;
-
     }
 
- window.location.href =
-  `post.html?id=${selectedItemId}&password=${encodeURIComponent(password)}`;
-
-  } catch (e) {
-
-    console.error(e);
+    window.location.href =
+      `post.html?id=${selectedItemId}&password=${encodeURIComponent(password)}`;
+  } catch (error) {
+    console.error(error);
     passwordMessage.textContent = "error";
-
   }
-
 }
 
 checkExistingPosts();
