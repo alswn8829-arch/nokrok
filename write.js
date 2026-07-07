@@ -17,60 +17,42 @@ const params = new URLSearchParams(window.location.search);
 const itemId = params.get("id");
 const itemName = itemNames[itemId] || "unknown item";
 
-const itemLabel = document.getElementById("itemLabel");
-const writeForm = document.getElementById("writeForm");
-const submitButton = writeForm.querySelector("button[type='submit']");
+document.getElementById("itemLabel").textContent = itemName;
 
-itemLabel.textContent = itemName;
+const form = document.getElementById("writeForm");
+const submitBtn = form.querySelector("button");
 
-writeForm.addEventListener("submit", async (event) => {
-  event.preventDefault();
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-  submitButton.disabled = true;
-  submitButton.textContent = "sending...";
+  submitBtn.disabled = true;
+  submitBtn.textContent = "sending...";
 
-  const name = document.getElementById("name").value.trim();
-  const password = document.getElementById("password").value.trim();
-  const title = document.getElementById("title").value.trim();
-  const message = document.getElementById("message").value.trim();
-
-  if (!itemId) {
-    alert("아이템 정보가 없습니다.");
-    submitButton.disabled = false;
-    submitButton.textContent = "send";
-    return;
-  }
-
-  if (!name || !password || !title || !message) {
-    alert("모든 칸을 입력해 주세요.");
-    submitButton.disabled = false;
-    submitButton.textContent = "send";
-    return;
-  }
+  const body = {
+    itemId,
+    itemName,
+    name: document.getElementById("name").value.trim(),
+    password: document.getElementById("password").value.trim(),
+    title: document.getElementById("title").value.trim(),
+    message: document.getElementById("message").value.trim()
+  };
 
   try {
     await fetch(API_URL, {
       method: "POST",
       mode: "no-cors",
-      body: JSON.stringify({
-        itemId,
-        itemName,
-        name,
-        password,
-        title,
-        message
-      })
+      body: JSON.stringify(body)
     });
 
-    sessionStorage.setItem("postPassword", password);
+    alert("저장되었습니다.");
 
-    alert("저장 요청을 보냈습니다. Google Sheets를 확인해 주세요.");
-    window.location.href = `post.html?id=${itemId}`;
+    window.location.href = `board.html`;
 
-  } catch (error) {
-    console.error(error);
-    alert("저장 중 오류가 발생했습니다.");
-    submitButton.disabled = false;
-    submitButton.textContent = "send";
+  } catch (err) {
+    console.error(err);
+    alert("저장 실패");
+
+    submitBtn.disabled = false;
+    submitBtn.textContent = "send";
   }
 });
