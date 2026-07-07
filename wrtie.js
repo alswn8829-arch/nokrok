@@ -41,8 +41,9 @@ writeForm.addEventListener("submit", async (event) => {
   }
 
   try {
-    const response = await fetch(API_URL, {
+    await fetch(API_URL, {
       method: "POST",
+      mode: "no-cors",
       body: JSON.stringify({
         itemId,
         itemName,
@@ -53,20 +54,9 @@ writeForm.addEventListener("submit", async (event) => {
       })
     });
 
-    const result = await response.json();
-
-    if (!result.ok) {
-      if (result.message === "already exists") {
-        alert("이미 글이 등록된 물건입니다.");
-      } else {
-        alert("저장 중 오류가 발생했습니다.");
-      }
-      return;
-    }
-
     sessionStorage.setItem("postPassword", password);
 
-    alert("저장됐습니다.");
+    alert("저장 요청을 보냈습니다. Google Sheets를 확인해 주세요.");
     window.location.href = `post.html?id=${itemId}`;
 
   } catch (error) {
